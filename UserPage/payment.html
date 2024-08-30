@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: #010f1c;
+        font-family: "Jost", sans-serif;
+      }
+
+      body {
+        background-color: #c8c5c536;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        width: 100%;
+      }
+
+      section {
+        max-width: 95%;
+        max-height: 90vh;
+        width: 600px;
+        background: #8a818140;
+        padding: 40px;
+        overflow-y: auto;
+        border-top: 10px solid #0989ff;
+      }
+
+      .flex {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .flex input {
+        border: none;
+        outline: none;
+        padding: 0px 20px;
+        height: 50px;
+        width: 100%;
+        border: 1px solid #e8e8e8;
+      }
+
+      .m10 {
+        margin-top: 10px;
+      }
+
+      .m20 {
+        margin-top: 20px;
+      }
+
+      button {
+        width: 200px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        height: 50px;
+        background: #0989ff;
+        color: #fff;
+        padding: 0px 20px;
+      }
+
+      input:focus {
+        border: 1px solid #0989ff;
+      }
+
+      button:hover {
+        background: #0870d0;
+      }
+
+      .get_qr {
+        height: 200px;
+        width: 200px;
+        border: 1px solid #999;
+        background: #efefef;
+      }
+
+      .qr_code {
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+
+      p {
+        color: #7a7a7a;
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      .im {
+        max-width: 100%;
+        width: 300px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <h1>Gas Booking Payment</h1>
+      <div class="form">
+        <div class="flex m20">
+          <label>Full Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            class="m10 name"
+          />
+        </div>
+        <div class="flex m20">
+          <label>Whatsapp Number</label>
+          <input
+            type="text"
+            name="phone"
+            placeholder="Ex- +919064973840"
+            class="m10 number"
+          />
+        </div>
+        <div class="flex m20">
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            class="m10 email"
+          />
+        </div>
+        <div class="flex m20">
+          <button type="button" class="generate_qr">NEXT</button>
+        </div>
+      </div>
+      <div class="qr_code m20">
+        <p>
+          Scan the QR Code with any UPI App and pay the amount then download the
+          source code.
+        </p>
+        <div>
+          <center><img src="" alt="QR CODE" class="get_qr m10" /></center>
+        </div>
+        <div class="flex m20">
+          <label>UTR/REFERENCE/TRANSACTION ID**</label>
+          <input
+            type="number"
+            name="email"
+            placeholder="UTR/REFERENCE/TRANSACTION ID**"
+            class="m10 id"
+          />
+        </div>
+        <button type="button" class="download_now m20">Download Now</button>
+      </div>
+    </section>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $(".generate_qr").click(function () {
+          $(".form").hide();
+          $(".qr_code").show();
+          var num = $(".number").val();
+          var link = "upi://pay?pa=morsedgalib982@oksbi%26am=5%26tn=" + num;
+          var upi =
+            "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" +
+            link;
+          console.log(upi);
+          $(".get_qr").attr("src", upi);
+        });
+        $(".download_now").click(function () {
+          var name = $(".name").val();
+          var num = $(".number").val();
+          var email = $(".email").val();
+          var id = $(".id").val();
+          if (num != "" && name != "" && email != "" && id != "") {
+            $.post(
+              "morsedgalib982@gmail.com/send-email",
+              { name, num, email, id },
+              function (response) {
+                if (response.success) {
+                  alert(
+                    "Payment successful! An email with the payment details has been sent."
+                  );
+                } else {
+                  alert(
+                    "There was an issue sending the email. Please try again."
+                  );
+                }
+              }
+            );
+          } else {
+            alert("Fill all fields correctly");
+          }
+        });
+      });
+    </script>
+    <script>
+      const express = require("express");
+      const bodyParser = require("body-parser");
+      const nodemailer = require("nodemailer");
+      const cors = require("cors");
+
+      const app = express();
+      app.use(cors());
+      app.use(bodyParser.json());
+      app.use(bodyParser.urlencoded({ extended: true }));
+
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "morsedgalib982@gmail.com",
+          pass: "Krishnapriya",
+        },
+      });
+
+      app.post("/send-email", (req, res) => {
+        const { name, num, email, id } = req.body;
+
+        const mailOptions = {
+          from: "morsedgalib982@gmail.com",
+          to: email,
+          subject: "Payment Confirmation",
+          text: `Hello ${name},\n\nThank you for your payment.\n\nDetails:\nName: ${name}\nNumber: ${num}\nTransaction ID: ${id}\n\nRegards,\nYour Company Name`,
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            return res
+              .status(500)
+              .send({ success: false, message: "Failed to send email" });
+          }
+          res.send({ success: true, message: "Email sent successfully" });
+        });
+      });
+
+      app.listen(3000, () => {
+        console.log("Server is running on port 3000");
+      });
+    </script>
+  </body>
+</html>

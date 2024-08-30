@@ -1,0 +1,103 @@
+.container {
+  background-image: url(bgimg.jpg);
+  background-color: #eeeeee;
+  display: flex;
+  flex-direction: row;
+  width: 92vw;
+  padding: 20px;
+  margin-left: 30px;
+}
+
+#signUpMessage {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(128, 0, 0, 0.9);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 5px;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  max-width: 80%;
+  text-align: center;
+}
+
+#signUpMessage.show {
+  display: block;
+  opacity: 1;
+}
+
+.btn {
+  cursor: pointer;
+  display: inline-grid;
+  padding: 10px 20px;
+  background-color: #ff4949d4;
+  color: #ffffff;
+  text-decoration: none;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+.submitbtn {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  margin-top: 20px;
+}
+.left-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.left-section img {
+  margin-top: 180px;
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.right-section {
+  display: flex;
+  flex: 2;
+  padding: 20px;
+  background-color: rgba(253, 238, 238, 0.758);
+  border-radius: 10px;
+}
+.your-form {
+  margin-right: 10px;
+}
+
+.your-form,
+.address-form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="date"],
+input[type="file"] {
+  width: 25vw;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

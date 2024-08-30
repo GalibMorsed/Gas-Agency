@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gas Cylinder Booking</title>
+    <style>
+      body {
+        background-image: url(bgimg2.jpg);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffffd2;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+
+      form {
+        margin-right: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-top: 15px;
+        margin-bottom: 5px;
+        color: #555;
+      }
+
+      input,
+      select,
+      textarea {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 100%;
+      }
+
+      .button {
+        text-decoration: none;
+        max-width: 20vw;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #fe6f6f;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .button:hover {
+        background-color: #fb4c4c;
+      }
+      #rejectionMessage {
+        color: red;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Book a Gas Cylinder</h2>
+      <form id="bookingForm">
+        <!-- User Details -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required />
+
+        <!-- Cylinder Details -->
+        <label for="cylinderType">Cylinder Type:</label>
+        <select id="cylinderType" name="cylinderType" required>
+          <option value="">Select Type</option>
+          <option value="LPG">LPG</option>
+          <option value="CNG">CNG</option>
+        </select>
+
+        <label for="quantity">Quantity:</label>
+        <select id="quantity" name="quantity" min="1" required>
+          <option value="select">Select Quantity</option>
+          <option value="One">1</option>
+        </select>
+
+        <!-- Delivery Address -->
+        <label for="address">Delivery Address:</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required />
+
+        <label for="zip">ZIP Code:</label>
+        <input type="text" id="zip" name="zip" required />
+
+        <!-- Submit Button -->
+        <button class="button" type="submit">Book Now</button>
+      </form>
+      <div id="rejectionMessage"></div>
+
+      <div class="order-history">
+        <h2>Order History</h2>
+        <p id="nameDisplay"></p>
+        <p id="phoneDisplay"></p>
+        <p id="cylinderTypeDisplay"></p>
+        <p id="cityDisplay"></p>
+        <p id="zipDisplay"></p>
+      </div>
+      <a class="button" id="button" href="payment.html">Make Payment</a>
+    </div>
+
+    <script src="bookcylender.js"></script>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
+          url("bgimg.jpg") center/cover no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #d5d4d4;
+      }
+
+      .img {
+        margin-right: 200px;
+      }
+      .login-container {
+        margin-right: 80px;
+        height: 30vw;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        text-align: center;
+      }
+
+      .login-container h2 {
+        margin-bottom: 40px;
+        color: #333;
+      }
+
+      .login-container input[type="text"],
+      .login-container input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 20px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .login-container input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #ff0000a3;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .login-container input[type="submit"]:hover {
+        background-color: #b30000b5;
+      }
+
+      .login-container p {
+        margin-top: 15px;
+      }
+      .login-container a:hover {
+        color: #0056b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <img class="img" src="gasagencyLogo.jpg" height="200vw" alt="image" />
+    <div class="login-container">
+      <h2>Delivary-Boy Login</h2>
+      <form action="/DelivarPage/delivary.html" method="get">
+        <input type="text" name="username" placeholder="Username" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <input type="submit" value="Login" />
+      </form>
+      <p>Login using your uniqe Id and Password.</p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard - Gas Agency</title>
+    <link rel="stylesheet" href="user.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="bookcylender.html">Book Cylinder</a></li>
+        <li><a href="user.html">Complaint</a></li>
+      </ul>
+      <div class="dropdown">
+        <span class="dropdownimg"
+          ><img src="bars-solid.svg" height="30px" alt="more options"
+        /></span>
+        <div class="dropdown-content">
+          <a href="#">Services</a>
+          <a href="userprofile.html">Profile</a>
+          <a href="/index.html">Logout</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Dashboard  -->
+    <div class="dashboard">
+      
+      <div class="user-info">
+        <h1><p>Please fill up your profile details to get verified <a href="userprofile.html">Click Here</a></p></h1>
+        <h2 id="loggedUserName"></h2>
+        <h3 id="loggedUserEmail"></h3>
+      </div>
+
+      <!-- Notice  -->
+      <div class="noticesContainer">
+        <h2>Notice</h2>
+        <p id="noticeText">
+        </p>
+      </div>
+
+
+      <!-- Book a Cylinder -->
+      <div class="book-cylinder">
+        <h2>Book a Cylinder</h2>
+        <p>Fill up the form and book your cylender</p>
+        <a href="bookcylender.html" class="btn">Book Now</a>
+        <p>
+          Recent Orders: <span id="recent-orders">Delivered, In Progress</span>
+        </p>
+      </div>
+
+      <!-- File a Complaint -->
+      <div class="file-complaint">
+        <h2>File a Complaint</h2>
+        <form id="complaintForm" method="get" action="/UserPage/complaint.html" >
+          <label  for="complaint-type">Complaint Type:
+            <input type="text" id="complaintType" name="complaint-type" required><br>
+          </label>
+            <label for="complaint-text">Complaint Text:
+            <textarea id="complaintText" rows="5" placeholder="Write about your Complaint"></textarea>
+            <input class="btn" type="submit">
+          </label>
+        </form>
+      </div>
+
+      <div class="contact-support">
+        <h3>Need Help?</h3>
+        <p>Contact our support: <strong>+91 8100684108</strong></p>
+      </div>
+    </div>
+
+    <script src="user.js">
+    </script>
+</html>

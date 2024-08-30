@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin User Info</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+      }
+
+      section#user-management {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: black;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      th,
+      td {
+        padding: 12px 15px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #5aa9f7;
+        color: #fff;
+        font-weight: bold;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      button {
+        padding: 5px 10px;
+        border: none;
+        background-color: #ff0000;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      button:hover {
+        background-color: #b30000a5;
+      }
+
+      button:active {
+        background-color: #850000c7;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="user-management">
+      <h2>Manage Users</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+    <script>
+      function loadUsers() {
+        const users = [];
+
+        const name = localStorage.getItem("userName");
+        const email = localStorage.getItem("userEmail");
+        const phone = localStorage.getItem("userPhone");
+
+        if (name && email && phone) {
+          users.push({ name, email, phone });
+        }
+
+        return users;
+      }
+
+      function displayUsers() {
+        const userTableBody = document.querySelector("#user-management tbody");
+        userTableBody.innerHTML = "";
+
+        const users = loadUsers();
+
+        users.forEach((user, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td>${user.phone}</td>
+                <td>
+                    <button onclick="deleteUser(${index})">Delete</button>
+                </td>
+            `;
+          userTableBody.appendChild(row);
+        });
+      }
+
+      function deleteUser(index) {
+        localStorage.removeItem("userName");
+        localStorage.removeItem("userEmail");
+        localStorage.removeItem("userPhone");
+
+        displayUsers();
+        alert("User information deleted.");
+      }
+      displayUsers();
+    </script>
+  </body>
+</html>

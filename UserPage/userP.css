@@ -1,0 +1,134 @@
+#profile-container {
+  margin: 20px auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+nav {
+  background-color: #5aa9f7;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav ul li {
+  position: relative;
+  margin-right: 80px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 15px;
+  display: block;
+}
+
+nav ul li a:hover {
+  background-color: #90b9eb;
+  border-radius: 5px;
+}
+
+#profile-container h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+#details-container {
+  margin-bottom: 20px;
+}
+
+#details-container p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+#details-container button {
+  background-color: #5faafb;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#details-container button:hover {
+  background-color: #248dfe;
+}
+
+.edit-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 600px;
+  z-index: 10;
+  display: none;
+}
+.edit-form h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.edit-form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+.edit-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.edit-form button {
+  background-color: #55f67a;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.edit-form button:hover {
+  background-color: #57e175;
+}
+
+.edit-form #cancel-button {
+  background-color: #f76f7d;
+}
+
+.edit-form #cancel-button:hover {
+  background-color: #fa5364;
+}

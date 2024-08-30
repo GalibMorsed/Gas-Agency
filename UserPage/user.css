@@ -1,0 +1,169 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 5px;
+  padding: 0;
+  background-color: #0b344451;
+}
+
+.btn {
+  display: inline-grid;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+h2,
+h3 {
+  color: #333;
+}
+nav {
+  background-color: #5aa9f7;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav ul li {
+  position: relative;
+  margin-right: 80px;
+}
+
+nav ul li a {
+  font-family: Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 15px;
+  display: block;
+}
+
+nav ul li a:hover {
+  background-color: #90b9eb;
+  border-radius: 5px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownimg {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #55555550;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dashboard {
+  padding: 20px;
+  margin: auto;
+  display: inline;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.dashboard div {
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  flex: 1 1 300px;
+}
+.user-info {
+  background-color: #e2e2e2;
+  height: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+.noticesContainer {
+  background-color: #fefefa;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #fdfcfb;
+  text-align: center;
+}
+.noticesContainer h2 {
+  margin-bottom: 5px;
+}
+
+.book-cylinder {
+  background-color: #f4f4f4;
+  height: 300px;
+  padding: 10px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.file-complaint {
+  background-color: #e2e2e2;
+}
+.file-complaint h2,
+.order-history h2 {
+  display: flex;
+  justify-content: center;
+}
+.order-history {
+  background-color: #f4f4f4;
+}
+.contact-support {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+form label,
+form select,
+form textarea {
+  display: block;
+  margin-bottom: 10px;
+}
+
+form textarea {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+}

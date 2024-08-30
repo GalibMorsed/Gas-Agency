@@ -1,0 +1,208 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+h1,
+h2 {
+  color: #333;
+}
+
+p {
+  color: #555;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background-color: #555;
+}
+.new-connection,
+.work-for-us,
+.contact {
+  padding: 40px;
+  text-align: center;
+}
+
+.new-connection h2,
+.work-for-us h2,
+.contact h2 {
+  margin-bottom: 15px;
+  font-size: 28px;
+}
+
+.new-connection p,
+.work-for-us p,
+.contact p {
+  font-size: 16px;
+}
+
+.mainlogo {
+  display: flex;
+  margin-left: 2px;
+  height: 100px;
+  text-align: start;
+  background-color: hsl(226, 100%, 97%);
+  margin-bottom: 2px;
+}
+.mainlogo2 {
+  text-align: end;
+  margin-left: 60vw;
+}
+/* Navbar */
+.navbar {
+  height: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3c567e;
+  padding: 15px;
+}
+
+.threebro,
+.twobro {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.threebro a,
+.twobro a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 60px;
+}
+
+.threebro a:hover,
+.twobro a:hover {
+  background-color: #7dbbf941;
+  border-radius: 4px;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fffdfd;
+  min-width: 150px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-content li {
+  border-bottom: 1px solid #ffffff;
+}
+
+.dropdown-content li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content li a {
+  padding: 12px 16px;
+  display: block;
+  color: #333;
+  text-decoration: none;
+}
+
+.dropdown-content li a:hover {
+  background-color: #0c1c2c41;
+  color: #333;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #92c5f941;
+}
+
+/* Description Section */
+.descriptionimg {
+  position: relative;
+  margin-left: 15vw;
+}
+
+.description {
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  margin: auto;
+  padding: 40px;
+  text-align: center;
+  background-color: #f4f4f4;
+}
+
+.description h1 {
+  margin-bottom: 20px;
+  font-size: 36px;
+}
+
+.description p {
+  font-size: 18px;
+}
+
+/* New Connection*/
+
+.new-connection {
+  position: relative;
+  background-color: #e2e2e2;
+  flex-direction: row-reverse;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  margin: auto;
+}
+
+.connectionimg {
+  margin-right: 18vw;
+}
+
+/*Work for Us*/
+.work-for-us {
+  background-color: #fcf1f100;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100vw;
+  margin: auto;
+  padding: 40px;
+  text-align: center;
+}
+
+.workforusimg {
+  margin-left: 15vw;
+}
+
+/*Contact Sections */
+.contact {
+  background-color: #e2e2e2;
+}
+
+.contact p {
+  margin-bottom: 8px;
+  font-size: 16px;
+}

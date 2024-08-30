@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link rel="stylesheet" href="userP.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="user.html">User Page </a></li>
+      </ul>
+      </div>
+    </nav>
+    <div id="profile-container">
+      <h1>Your Details</h1>
+      <div id="details-container">
+        <p id="name-display">Name: <span id="name">User name</span></p>
+        <p id="phone-display">
+          Phone Number: <span id="phone">1234567890</span>
+        </p>
+        <p id="email-display">
+          Email: <span id="email">user@example.com</span>
+        </p>
+        <p id="address-display">
+          Street Address: <span id="address">123 Main St</span>
+        </p>
+        <p id="area-display">Area: <span id="area">White-Field</span></p>
+        <p id="house-display">House No: <span id="house">12B</span></p>
+        <p id="city-display">City: <span id="city">Bangalore</span></p>
+        <p id="pincode-display">Pin Code: <span id="pincode">123456</span></p>
+        <button type="button" id="edit-button">Edit</button>
+      </div>
+
+      <div id="edit-form" class="edit-form">
+        <h1>Edit Details</h1>
+        <label for="name-input">Name:</label>
+        <input type="text" id="name-input" />
+        <br />
+        <label for="phone-input">Phone Number:</label>
+        <input type="text" id="phone-input" />
+        <br />
+        <label for="email-input">Email:</label>
+        <input type="text" id="email-input" />
+        <br />
+        <label for="address-input">Street Address:</label>
+        <input type="text" id="address-input" />
+        <br />
+        <label for="area-input">Area:</label>
+        <input type="text" id="area-input" />
+        <br />
+        <label for="house-input">House No:</label>
+        <input type="text" id="house-input" />
+        <br />
+        <label for="city-input">City:</label>
+        <input type="text" id="city-input" />
+        <br />
+
+        <label for="pincode-input">Pin Code:</label>
+        <input type="text" id="pincode-input" />
+        <br />
+        <button type="button" id="save-button">Save</button>
+        <button type="button" id="cancel-button">Cancel</button>
+      </div>
+    </div>
+
+    <script src="userP.js"></script>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Work for Us</title>
+    <link rel="stylesheet" href="wfu.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Work for Us</h2>
+      <form
+        action="#"
+        method="POST"
+        id="workform"
+        enctype="multipart/form-data"
+      >
+        <!-- Personal Information -->
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" required />
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" required />
+
+        <label for="position">Position Applied For</label>
+        <select id="position" name="position" required>
+          <option value="">Select Position</option>
+          <option value="manager">Manager</option>
+          <option value="technician">Technician</option>
+          <option value="customer-service">Customer Service</option>
+          <option value="sales">Sales</option>
+        </select>
+
+        <label for="start-date">Available Start Date</label>
+        <input type="date" id="start-date" name="start-date" required />
+
+        <label for="qualification">Highest Qualification</label>
+        <select id="qualification" name="qualification" required>
+          <option value="">Select Qualification</option>
+          <option value="high-school">High School</option>
+          <option value="bachelor">Bachelor's Degree</option>
+        </select>
+
+        <label for="skills">Relevant Skills</label>
+        <textarea
+          id="skills"
+          name="skills"
+          placeholder="List your skills..."
+          required
+        ></textarea>
+
+        <label for="reference-name">Reference Name</label>
+        <input type="text" id="reference-name" name="reference-name" />
+
+        <label for="reference-contact">Reference Contact</label>
+        <input type="text" id="reference-contact" name="reference-contact" />
+
+        <label for="additional-info">Why Do You Want to Work with Us?</label>
+        <textarea
+          id="additional-info"
+          name="additional-info"
+          required
+        ></textarea>
+
+        <a class="btn" href="">Submit Application</a>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("workform")
+        .addEventListener("btn", function (event) {
+          event.preventDefault();
+          alert("Your Application submitted successfully!");
+
+          setTimeout(function () {
+            window.location.href = "/index.html";
+          }, 2000);
+
+          this.reset();
+        });
+
+      /* after submistation the admin should get a mail with all the detalis of the persons */
+    </script>
+  </body>
+</html>

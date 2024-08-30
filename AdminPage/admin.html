@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="cylinderrequest.html">Cylinder Requests</a></li>
+        <li><a href="admin.html">Complaint</a></li>
+        <li><a href="userinfo.html">User-Info</a></li>
+      </ul>
+      <div class="dropdown">
+        <span class="dropdownimg"
+          ><img src="bars-solid.svg" height="30px" alt="more options"
+        /></span>
+        <div class="dropdown-content">
+          <a href="admin.html">Notices</a>
+          <a href="admin.html">Profile</a>
+          <a href="/index.html">Logout</a>
+        </div>
+      </div>
+    </nav>
+    <div class="admin-dashboard">
+      <h1>Admin Dashboard</h1>
+      <!-- Notice Board -->
+      <section id="notice-board">
+        <h2>Add Notices</h2>
+        <form id="notice-form">
+          <textarea
+            id="noticeInput"
+            placeholder="Enter your notice here"
+          ></textarea>
+          <button type="submit" onclick="saveNotice()">Add Notice</button>
+        </form>
+        <h3>Notices:</h3>
+        <ul id="notices-list"></ul>
+      </section>
+    </div>
+    <script src="admin.js"></script>
+  </body>
+</html>
