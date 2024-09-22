@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Complaint Form</title>
+    <link rel="stylesheet" href="complaint.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- Complaint History Container -->
+      <div class="complaint-history" id="history">
+        <h2>Complaint History</h2>
+        <ul id="history-list">
+          <li>No complaints yet.</li>
+        </ul>
+      </div>
+
+      <!-- Complaint Form Container -->
+      <div class="complaint-form">
+        <h2>Complaint Form</h2>
+        <form id="complaintForm">
+          <label for="name">Name :</label>
+          <input type="text" id="name" placeholder="Enter your name" required />
+
+          <label for="email">Email :</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email "
+            required
+          />
+
+          <label for="complaintType">Complaint Type:</label>
+          <input
+            type="text"
+            id="complaintType"
+            placeholder="Enter the Complaint Type"
+          />
+
+          <label for="complaint">Your Complaint:</label>
+          <textarea
+            id="complaint"
+            placeholder="Describe your complaint"
+            required
+          ></textarea>
+
+          <button type="submit" id="submit" class="submit-btn">
+            Submit Complaint
+          </button>
+          <p id="error-msg" class="error"></p>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        getDocs,
+      } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBt4QoU4hvC_CJ8GXZxfQ6szasjeSRI-jU",
+        authDomain: "data-store-c89df.firebaseapp.com",
+        projectId: "data-store-c89df",
+        storageBucket: "data-store-c89df.appspot.com",
+        messagingSenderId: "537871696760",
+        appId: "1:537871696760:web:0afb84bd3651723e5d3e8d",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      document
+        .getElementById("complaintForm")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          // Get form data
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const complaintType = document.getElementById("complaintType").value;
+          const complaint = document.getElementById("complaint").value;
+
+          if (!complaintType) {
+            document.getElementById("error-msg").textContent =
+              "Please select a complaint type.";
+            return; // Prevent form submission if no complaint type is selected
+          }
+
+          try {
+            // Add a new document with form data
+            const docRef = await addDoc(collection(db, "users"), {
+              name: name,
+              email: email,
+              complaintType: complaintType,
+              complaint: complaint,
+              timestamp: new Date(),
+            });
+            console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+        });
+
+      async function displayHistory() {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        const historyList = document.getElementById("history-list");
+        historyList.innerHTML = ""; // Clear existing history
+
+        querySnapshot.forEach((doc) => {
+          const userData = doc.data();
+          const listItem = document.createElement("li");
+          listItem.textContent = `Name: ${userData.name}, Email: ${
+            userData.email
+          },complaintType: ${userData.complaintType},complaint: ${
+            userData.complaint
+          } Date: ${userData.timestamp.toDate().toDateString()}`;
+          historyList.appendChild(listItem);
+        });
+      }
+
+      // Call this function to display history after form submission
+      displayHistory();
+    </script>
+  </body>
+</html>

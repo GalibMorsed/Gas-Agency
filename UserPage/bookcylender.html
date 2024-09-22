@@ -102,10 +102,15 @@
 
         <!-- Delivery Address -->
         <label for="address">Delivery Address:</label>
-        <textarea id="address" name="address" rows="3" required></textarea>
+        <input type="address" id="address" name="address" required />
 
-        <label for="city">City:</label>
-        <input type="text" id="city" name="city" required />
+        <label for="area">Area:</label>
+        <select id="area" name="areaType" required>
+          <option value="">Select Area</option>
+          <option value="1">Area 1</option>
+          <option value="2">Area 2</option>
+          <option value="3">Area 3</option>
+        </select>
 
         <label for="zip">ZIP Code:</label>
         <input type="text" id="zip" name="zip" required />
@@ -120,7 +125,7 @@
         <p id="nameDisplay"></p>
         <p id="phoneDisplay"></p>
         <p id="cylinderTypeDisplay"></p>
-        <p id="cityDisplay"></p>
+        <p id="areaDisplay"></p>
         <p id="zipDisplay"></p>
       </div>
       <a class="button" id="button" href="payment.html">Make Payment</a>

@@ -12,7 +12,7 @@
       <ul>
         <li><a href="/index.html">Home</a></li>
         <li><a href="bookcylender.html">Book Cylinder</a></li>
-        <li><a href="user.html">Complaint</a></li>
+        <li><a href="complaintPage.html">Complaint</a></li>
       </ul>
       <div class="dropdown">
         <span class="dropdownimg"
@@ -28,9 +28,13 @@
 
     <!-- Main Dashboard  -->
     <div class="dashboard">
-      
       <div class="user-info">
-        <h1><p>Please fill up your profile details to get verified <a href="userprofile.html">Click Here</a></p></h1>
+        <h1>
+          <p>
+            Please fill up your profile details to get verified
+            <a href="userprofile.html">Click Here</a>
+          </p>
+        </h1>
         <h2 id="loggedUserName"></h2>
         <h3 id="loggedUserEmail"></h3>
       </div>
@@ -38,10 +42,8 @@
       <!-- Notice  -->
       <div class="noticesContainer">
         <h2>Notice</h2>
-        <p id="noticeText">
-        </p>
+        <p id="noticeDisplay"></p>
       </div>
-
 
       <!-- Book a Cylinder -->
       <div class="book-cylinder">
@@ -49,22 +51,20 @@
         <p>Fill up the form and book your cylender</p>
         <a href="bookcylender.html" class="btn">Book Now</a>
         <p>
-          Recent Orders: <span id="recent-orders">Delivered, In Progress</span>
+          To Track all your Booking History and order Status, go to
+          <a href="bookcylender.html">Book Cylinder Page</a> .
         </p>
       </div>
 
       <!-- File a Complaint -->
       <div class="file-complaint">
         <h2>File a Complaint</h2>
-        <form id="complaintForm" method="get" action="/UserPage/complaint.html" >
-          <label  for="complaint-type">Complaint Type:
-            <input type="text" id="complaintType" name="complaint-type" required><br>
-          </label>
-            <label for="complaint-text">Complaint Text:
-            <textarea id="complaintText" rows="5" placeholder="Write about your Complaint"></textarea>
-            <input class="btn" type="submit">
-          </label>
-        </form>
+        <p>Fill up the form and file your complaint</p>
+        <a href="complaintPage.html" class="btn">Click Here</a>
+        <p>
+          To Track all your Complaint History and Status, go to
+          <a href="complaintPage.html"> Complaint Page</a> .
+        </p>
       </div>
 
       <div class="contact-support">
@@ -73,6 +73,55 @@
       </div>
     </div>
 
-    <script src="user.js">
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+      } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBt4QoU4hvC_CJ8GXZxfQ6szasjeSRI-jU",
+        authDomain: "data-store-c89df.firebaseapp.com",
+        projectId: "data-store-c89df",
+        storageBucket: "data-store-c89df.appspot.com",
+        messagingSenderId: "537871696760",
+        appId: "1:537871696760:web:0afb84bd3651723e5d3e8d",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      async function fetchNotices() {
+        console.log("fetchNotices called");
+        try {
+          const noticesCollection = collection(db, "notices"); // Ensure this matches the storage page
+          const noticeSnapshot = await getDocs(noticesCollection);
+          const noticesList = noticeSnapshot.docs.map((doc) => doc.data());
+
+          const noticeContainer = document.getElementById("noticeDisplay");
+          noticeContainer.innerHTML = "";
+
+          if (noticesList.length > 0) {
+            noticesList.forEach((noticetexts) => {
+              const noticeElement = document.createElement("p");
+              noticeElement.textContent = noticetexts.notice; // Correct variable name
+              noticeContainer.appendChild(noticeElement);
+            });
+          } else {
+            noticeContainer.textContent = "No notices available at the moment.";
+          }
+        } catch (error) {
+          console.error("Error fetching notices: ", error);
+          const noticeContainer = document.getElementById("noticeDisplay");
+          noticeContainer.textContent = "Failed to load notices.";
+        }
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("DOM fully loaded and parsed");
+        fetchNotices();
+      });
     </script>
+  </body>
 </html>

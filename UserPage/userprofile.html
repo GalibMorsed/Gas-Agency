@@ -66,6 +66,135 @@
       </div>
     </div>
 
-    <script src="userP.js"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBt4QoU4hvC_CJ8GXZxfQ6szasjeSRI-jU",
+  authDomain: "data-store-c89df.firebaseapp.com",
+  projectId: "data-store-c89df",
+  storageBucket: "data-store-c89df.appspot.com",
+  messagingSenderId: "537871696760",
+  appId: "1:537871696760:web:0afb84bd3651723e5d3e8d",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Replace this with the actual user ID or logic to get it
+const userId = "user_unique_id"; // Placeholder for the actual user ID
+
+document.addEventListener("DOMContentLoaded", function () {
+  loadUserDetails();
+
+  document.getElementById("edit-button").addEventListener("click", function () {
+    document.getElementById("details-container").style.display = "none";
+    document.getElementById("edit-form").style.display = "block";
+  });
+
+  document.getElementById("save-button").addEventListener("click", function () {
+    var name = document.getElementById("name-input").value;
+    var phone = document.getElementById("phone-input").value;
+    var email = document.getElementById("email-input").value;
+    var address = document.getElementById("address-input").value;
+    var area = document.getElementById("area-input").value;
+    var house = document.getElementById("house-input").value;
+    var city = document.getElementById("city-input").value;
+    var pincode = document.getElementById("pincode-input").value;
+
+    saveUserDetails(name, phone, email, address, area, house, city, pincode);
+
+    document.getElementById("name").textContent = name;
+    document.getElementById("phone").textContent = phone;
+    document.getElementById("email").textContent = email;
+    document.getElementById("address").textContent = address;
+    document.getElementById("area").textContent = area;
+    document.getElementById("house").textContent = house;
+    document.getElementById("city").textContent = city;
+    document.getElementById("pincode").textContent = pincode;
+
+    document.getElementById("edit-form").style.display = "none";
+    document.getElementById("details-container").style.display = "block";
+  });
+
+  document
+    .getElementById("cancel-button")
+    .addEventListener("click", function () {
+      document.getElementById("edit-form").style.display = "none";
+      document.getElementById("details-container").style.display = "block";
+    });
+});
+
+async function saveUserDetails(
+  name,
+  phone,
+  email,
+  address,
+  area,
+  house,
+  city,
+  pincode
+) {
+  const userDetails = {
+    name: name,
+    phone: phone,
+    email: email,
+    address: address,
+    area: area,
+    house: house,
+    city: city,
+    pincode: pincode,
+  };
+
+  try {
+    await setDoc(doc(db, "user-info", userId), userDetails);
+    console.log("User details successfully saved!");
+  } catch (error) {
+    console.error("Error saving user details: ", error);
+  }
+}
+
+async function loadUserDetails() {
+  try {
+    const docRef = doc(db, "user-info", userId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      document.getElementById("name").textContent = data.name;
+      document.getElementById("phone").textContent = data.phone;
+      document.getElementById("email").textContent = data.email;
+      document.getElementById("address").textContent = data.address;
+      document.getElementById("area").textContent = data.area;
+      document.getElementById("house").textContent = data.house;
+      document.getElementById("city").textContent = data.city;
+      document.getElementById("pincode").textContent = data.pincode;
+
+      document.getElementById("name-input").value = data.name;
+      document.getElementById("phone-input").value = data.phone;
+      document.getElementById("email-input").value = data.email;
+      document.getElementById("address-input").value = data.address;
+      document.getElementById("area-input").value = data.area;
+      document.getElementById("house-input").value = data.house;
+      document.getElementById("city-input").value = data.city;
+      document.getElementById("pincode-input").value = data.pincode;
+    } else {
+      console.log("No such document!");
+    }
+  } catch (error) {
+    console.error("Error getting document:", error);
+  }
+}
+
+    </script>
   </body>
 </html>

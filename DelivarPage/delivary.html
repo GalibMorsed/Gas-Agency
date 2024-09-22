@@ -3,9 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Delivery Boy Dashboard</title>
+    <link rel="stylesheet" href="delivary.css" />
   </head>
   <body>
-    <h1>delivary-boy page</h1>
+    <!-- Navigation Bar -->
+    <nav>
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="usercomplaint.html">User Complaints</a></li>
+      </ul>
+      </div>
+    </nav>
+   <h1>Delivery Boy Dashboard</h1>
+
+<!-- Table for showing cylinder requests -->
+<table id="booking-requests">
+    <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Coustomer Number</th>
+            <th>Cylinder Type</th>
+            <th>Area</th>
+            <th>System Code</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Rows will be populated via JavaScript -->
+    </tbody>
+</table>
+</table>
+    <!-- Submit form for delivery completion -->
+    <form id="deliveryForm">
+      <label for="code">Enter System Code:</label>
+      <input type="text" id="code" name="code" required />
+      <button type="submit">Complete Delivery</button>
+    </form>
+
+    <script src="delivary.js"></script>
   </body>
 </html>

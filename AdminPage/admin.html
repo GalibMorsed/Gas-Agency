@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="admin.css" />
   </head>
   <body>
@@ -12,7 +12,7 @@
       <ul>
         <li><a href="/index.html">Home</a></li>
         <li><a href="cylinderrequest.html">Cylinder Requests</a></li>
-        <li><a href="admin.html">Complaint</a></li>
+        <li><a href="complaintrequest.html">Complaint</a></li>
         <li><a href="userinfo.html">User-Info</a></li>
       </ul>
       <div class="dropdown">
@@ -35,13 +35,96 @@
           <textarea
             id="noticeInput"
             placeholder="Enter your notice here"
+            required
           ></textarea>
-          <button type="submit" onclick="saveNotice()">Add Notice</button>
+          <button type="submit">Add Notice</button>
         </form>
         <h3>Notices:</h3>
         <ul id="notices-list"></ul>
       </section>
     </div>
-    <script src="admin.js"></script>
+    <script type="module">
+      // Import Firebase functions
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        getDocs,
+        deleteDoc,
+        doc,
+      } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBt4QoU4hvC_CJ8GXZxfQ6szasjeSRI-jU",
+        authDomain: "data-store-c89df.firebaseapp.com",
+        projectId: "data-store-c89df",
+        storageBucket: "data-store-c89df.appspot.com",
+        messagingSenderId: "537871696760",
+        appId: "1:537871696760:web:0afb84bd3651723e5d3e8d",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Save notice function
+      async function saveNotice(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const noticeText = document.getElementById("noticeInput").value;
+
+        if (noticeText) {
+          await addDoc(collection(db, "notices"), {
+            notice: noticeText,
+            timestamp: new Date(),
+          });
+
+          document.getElementById("noticeInput").value = ""; // Clear input
+          loadNotices(); // Refresh the notice list
+        } else {
+          alert("Please enter a notice.");
+        }
+      }
+
+      // Delete notice function
+      async function deleteNotice(noticeId) {
+        if (confirm("Are you sure you want to delete this notice?")) {
+          await deleteDoc(doc(db, "notices", noticeId));
+          loadNotices(); // Refresh the list after deletion
+        }
+      }
+
+      // Load notices from Firestore
+      async function loadNotices() {
+        const noticesList = document.getElementById("notices-list");
+        noticesList.innerHTML = ""; // Clear existing notices
+        const querySnapshot = await getDocs(collection(db, "notices"));
+
+        querySnapshot.forEach((docSnapshot) => {
+          const data = docSnapshot.data();
+          const li = document.createElement("li");
+
+          // Create delete button
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "Delete";
+          deleteButton.style.marginLeft = "10px";
+          deleteButton.onclick = () => deleteNotice(docSnapshot.id);
+
+          li.textContent = data.notice;
+          li.appendChild(deleteButton);
+          noticesList.appendChild(li);
+        });
+      }
+
+      // Load notices when the page loads
+      window.onload = loadNotices;
+
+      // Add event listener to the form
+      document
+        .getElementById("notice-form")
+        .addEventListener("submit", saveNotice);
+    </script>
   </body>
 </html>

@@ -13,6 +13,7 @@ function displayBookingRequests() {
     row.innerHTML = `
                 <td>${request.name}</td>
                 <td>${request.cylinderType}</td>
+                <td>${request.area}</td>
                 <td>
                     <select onchange="updateStatus(${index}, this.value)">
                         <option value="Pending" ${

@@ -1,6 +1,7 @@
 const max_cylinders = 12;
 const storage_count = "cylinderCount";
 const booking_history_key = "bookingHistory";
+const system_code_key = "systemCode"; // New key for storing the system code
 
 document
   .getElementById("bookingForm")
@@ -15,17 +16,22 @@ document
     const name = document.getElementById("name").value;
     const phone = document.getElementById("phone").value;
     const cylinderType = document.getElementById("cylinderType").value;
-    const city = document.getElementById("city").value;
+    const area = document.getElementById("area").value;
     const zip = document.getElementById("zip").value;
     const quantity = parseInt(document.getElementById("quantity").value);
+
+    // Generate a system code
+    const systemCode = generateSystemCode();
+    localStorage.setItem(system_code_key, systemCode); // Store the generated code in localStorage
 
     const booking = {
       name,
       phone,
       cylinderType,
-      city,
+      area,
       zip,
       quantity,
+      systemCode,
       date: new Date().toLocaleString(),
     };
 
@@ -35,6 +41,11 @@ document
 
     display_value();
   });
+
+// Function to generate a system code
+function generateSystemCode() {
+  return +Date.now() + "-" + Math.floor(Math.random() * 10000);
+}
 
 function for_request() {
   const currentCount = parseInt(localStorage.getItem(storage_count)) || 0;
@@ -58,7 +69,7 @@ function display_value() {
   const name = localStorage.getItem("NAME");
   const phone = localStorage.getItem("PHONE");
   const cylinderType = localStorage.getItem("CYLINDERTYPE");
-  const city = localStorage.getItem("CITY");
+  const area = localStorage.getItem("AREA");
   const zip = localStorage.getItem("ZIP");
 
   document.getElementById("nameDisplay").innerText = `Name: ${name}`;
@@ -66,7 +77,7 @@ function display_value() {
   document.getElementById(
     "cylinderTypeDisplay"
   ).innerText = `Cylinder Type: ${cylinderType}`;
-  document.getElementById("cityDisplay").innerText = `City: ${city}`;
+  document.getElementById("areaDisplay").innerText = `Area: ${area}`;
   document.getElementById("zipDisplay").innerText = `ZIP Code: ${zip}`;
 
   const history = JSON.parse(localStorage.getItem(booking_history_key)) || [];
@@ -84,9 +95,10 @@ function display_value() {
       Name: ${booking.name}<br>
       Phone: ${booking.phone}<br>
       Cylinder Type: ${booking.cylinderType}<br>
-      City: ${booking.city}<br>
+      Area: ${booking.area}<br>
       ZIP Code: ${booking.zip}<br>
-      Date: ${booking.date}<br><br>`;
+      Date: ${booking.date}<br>
+      System Code: ${booking.systemCode}<br><br>`;
     historyList.appendChild(listItem);
   });
 

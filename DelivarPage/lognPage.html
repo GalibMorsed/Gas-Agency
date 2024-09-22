@@ -11,6 +11,15 @@
         box-sizing: border-box;
         font-family: Arial, sans-serif;
       }
+      .submit {
+        cursor: pointer;
+        display: inline-grid;
+        padding: 10px 20px;
+        background-color: #ff4949d4;
+        color: #ffffff;
+        border-radius: 4px;
+        font-size: 15px;
+      }
 
       body {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
@@ -51,27 +60,23 @@
         font-size: 16px;
       }
 
-      .login-container input[type="submit"] {
-        width: 100%;
-        padding: 10px;
-        background-color: #ff0000a3;
-        border: none;
-        border-radius: 5px;
-        color: #fff;
-        font-size: 18px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      .login-container input[type="submit"]:hover {
-        background-color: #b30000b5;
-      }
-
       .login-container p {
         margin-top: 15px;
       }
+
+      .login-container a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
       .login-container a:hover {
         color: #0056b3;
+      }
+      #signInMessage {
+        color: red;
+        margin-top: 15px;
+        height: 10px;
       }
     </style>
   </head>
@@ -81,16 +86,85 @@
     <div class="login-container">
       <h2>Delivary-Boy Login</h2>
       <form action="/DelivarPage/delivary.html" method="get">
-        <input type="text" name="username" placeholder="Username" required />
+        <input
+          type="text"
+          id="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
         <input
           type="password"
+          id="password"
           name="password"
           placeholder="Password"
           required
         />
-        <input type="submit" value="Login" />
+        <button id="submit" class="submit" type="button">Login</button>
       </form>
       <p>Login using your uniqe Id and Password.</p>
+      <div id="signInMessage"></div>
     </div>
+
+    <script type="module">
+      // Import Firebase and necessary functions
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+      } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+      // Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDe1NpBXiLXUQZ93qP89QcCSZxiisBlK-0",
+        authDomain: "gas-agency-d03bf.firebaseapp.com",
+        projectId: "gas-agency-d03bf",
+        storageBucket: "gas-agency-d03bf.appspot.com",
+        messagingSenderId: "232877539092",
+        appId: "1:232877539092:web:60206f0a43be6856370c01",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      function showMessage(message, divId) {
+        const messageDiv = document.getElementById(divId);
+        if (messageDiv) {
+          messageDiv.textContent = message;
+          messageDiv.style.display = "block";
+          setTimeout(() => {
+            messageDiv.style.display = "none";
+          }, 5000);
+        } else {
+          console.error(`Element with ID "${divId}" not found.`);
+        }
+      }
+
+      document.getElementById("submit").addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            console.log("Login successful", user);
+            window.location.href = "delivary.html";
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            if (
+              errorCode === "auth/wrong-password" ||
+              errorCode === "auth/user-not-found"
+            ) {
+              showMessage("Incorrect Email or Password", "signInMessage");
+            } else {
+              showMessage("An error occurred during sign-in", "signInMessage");
+            }
+          });
+      });
+    </script>
   </body>
 </html>
